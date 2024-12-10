@@ -3,6 +3,7 @@ package lesson_5_multi_arrays;
 import java.util.Arrays;
 
 public class MultiArrays {
+
     public static void main(String[] args){
         declareTwoDimensionalArray();
     }
