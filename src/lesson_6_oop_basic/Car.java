@@ -1,14 +1,14 @@
 package lesson_6_oop_basic;
 
 public class Car {
-    String company = "Unknown";
-    String model;
-    String color;
-    String engine;
-    int year;
-    int maxSpeed;
-    int minSpeed;
-    boolean isLikeNew;
+    String company = "Unknown"; // 7 bytes
+    String model; // 7
+    String color; // 7
+    String engine; // 7
+    int year; // 4
+    int maxSpeed; // 4
+    int minSpeed; // 4
+    boolean isLikeNew; // 1
 
     // Java compiler will add by default empty constructor
     // It will be the following: public Car(){}
@@ -63,5 +63,7 @@ public class Car {
         System.out.println("Your car's min speed is: " + minSpeed);
         System.out.println("Is your car like new? " + isLikeNew);
         System.out.println("Let's check the address of the instance via this: " + this);
+
+        System.gc();
     }
 }
