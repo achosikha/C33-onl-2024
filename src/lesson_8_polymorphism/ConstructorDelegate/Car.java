@@ -1,10 +1,10 @@
 package lesson_8_polymorphism.ConstructorDelegate;
 
 public class Car {
-    private String name;
+    private final String name;
     private String company;
     private String color;
-    private int speed;
+    private final int speed;
     private static int carCounter; // int carCounter belongs to CAR, not to its instances
     private int nonStaticCounter;
 
@@ -22,6 +22,7 @@ public class Car {
         this.color = color;
         carCounter++;
         nonStaticCounter++;
+        this.speed = 0;
     }
 
     public final void getMsg(){
