@@ -2,7 +2,7 @@ package lesson_12_string_regular_expressions;
 
 public class MyMain {
     public static void main(String[] args) {
-        calculator();
+        intComparison();
     }
 
     public static void getBasicString(){
@@ -104,5 +104,31 @@ public class MyMain {
         for (String el : splittedRegex){
             System.out.println(el);
         }
+    }
+
+    public static void intComparison(){
+        String valueOne = "Archil";
+        String valueTwo = "Archil";
+        String valueThree = "Borya";
+        String valueFour = "Chris";
+
+        // comparison by INTEGER
+        // 0 == equals (lv && rv are equal)
+        //  -1 0 1
+        System.out.println((valueOne.compareTo(valueTwo)));
+        System.out.println((valueOne.compareTo(valueThree)));
+        System.out.println((valueThree.compareTo(valueFour)));
+        System.out.println((valueFour.compareTo(valueThree)));
+
+        // Archil.equals(arChil) -> wrong
+        // Archil.equalsIgnoreCase(arCHiL) -> true
+
+        // indexOf only the first occurrence
+        System.out.println(("ArchilA".indexOf('c')));
+
+        // archil.sikharulidze@gmail.com
+        // Archil.Sikharulidze@GMAIL.COM
+        // equalsIgnoreCase()
+        // toLowerCase()
     }
 }
