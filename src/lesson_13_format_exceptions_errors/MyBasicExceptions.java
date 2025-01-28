@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class MyBasicExceptions {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         // Exceptions and Errors
         // Исключения и ошибки
 
@@ -22,7 +22,7 @@ public class MyBasicExceptions {
 
         // Надо быть осторожными с бесконечными циклами, поскольку для компилятора это не ошибка
         // память у вас все равно рухнет.
-        getFile();
+        throwsExceptionMethod();
     }
 
     public static void basicExceptions(){
@@ -155,11 +155,18 @@ public class MyBasicExceptions {
     public static void tryWithResources(){
         File file;
 
-        try {
+        try{
             file = new File("src/lesson_13_format_exceptions_errors/text.txt");
 
+            // try-wht-resources для того, чтобы автоматически закрывать ресурсы
+            // no need for FINALLY and other CLOSE() operations
+            // If it can it opens the document
+            // If it opens the document it will by default close it
             try(FileReader fileReader = new FileReader(file)){
-                //
+                int value;
+                while ((value = fileReader.read()) != -1) {
+                    System.out.print((char) value);
+                }
             } catch (FileNotFoundException e){
                 System.out.println("Your file was not found: " + e.getMessage());
             } catch (IOException e){
@@ -168,5 +175,44 @@ public class MyBasicExceptions {
         } catch (NullPointerException e){
             System.out.println("File was not properly initialized: " + e.getMessage());
         }
+    }
+
+    // Exceptions hierarchy
+    public static void checkExceptionsHierarchy() {
+        // Exception (super catch)
+        // RuntimeException
+        // IOException каждое исключение отвечает за свою группу, если вы вставите исключение, где нет такой надобность
+        // он подскажет вам
+        // InterruptedException...
+        try {
+            int[] numbers = new int[]{19, 5, 6};
+
+            for (int index = 0; index < numbers.length; index++) {
+                System.out.println(numbers[index]);
+            }
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please, enter a value: " + scanner.nextInt());
+        } catch (InputMismatchException e) {
+            System.out.println("InputMismatchException: " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.out.println("IllegalStateException: " + e.getMessage());
+        } catch (Exception e) {
+            // Пробрасываем лишь в тех случаях, когда нет возможности поймать специфические исключения
+            System.out.println();
+        }
+    }
+
+    // To throw exception on method() level
+    public static void throwsExceptionMethod() throws IOException{
+        System.out.print("Please, enter one value: ");
+        int value = System.in.read();
+
+        // Keyword throws не путать с keyword throw
+        // throws работает только на уровне метода и указывается после ее сигнатуры с указанием исключения
+        // Однако, если метод пробрасывает исключение, то его должен поймать и также пробросить вызывающий метод
+        // Или же в вызывающем метода все равно использовать блок try-catch
     }
 }
