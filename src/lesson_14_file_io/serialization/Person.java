@@ -7,6 +7,7 @@ import java.io.Serializable;
 // marker interface Serializable
 public class Person implements Serializable {
     public final String name;
+
     // transient public final int age -> do not include int age to serialization
     public final int age;
     public final String additional;
