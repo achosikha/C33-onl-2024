@@ -1,0 +1,6 @@
+Dog Собака
+Cat Кошка
+House Дом
+Horse Лощадь
+Flower Цветок
+Ball Мяч
