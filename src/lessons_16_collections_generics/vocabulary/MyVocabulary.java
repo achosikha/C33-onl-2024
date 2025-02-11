@@ -1,8 +1,10 @@
 package lessons_16_collections_generics.vocabulary;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
+import lessons_16_collections_generics.Cousin;
+import lessons_16_collections_generics.FamilyPerson;
+import lessons_16_collections_generics.Person;
+
+import java.util.*;
 
 public class MyVocabulary {
     public static void main(String[] args) {
@@ -31,7 +33,7 @@ public class MyVocabulary {
         // 14*(ABc):56
         // Get double array with only NUMBERS and only LETTERS
 
-        vocabularySet();
+        mapVocabulary();
     }
 
     public static void getWord(){
@@ -95,5 +97,27 @@ public class MyVocabulary {
 
     public static void mapVocabulary(){
         // MAP
+        TreeMap<String, String> vocabulary = new TreeMap<>();
+        vocabulary.put("Horse", "Лощадь");
+        vocabulary.put("Cat", "Кошка");
+        vocabulary.put("Dog", "Собака");
+        vocabulary.put("Camel", "Верблюд");
+        vocabulary.put("Chicken", "Курица");
+
+        System.out.println(vocabulary.get("Horse"));
+
+        System.out.println("Lets get all keys:");
+        for (Map.Entry entry : vocabulary.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    public static void storeObject(){
+        ArrayList<Person> familyTree = new ArrayList<>();
+        familyTree.add(new Person("Archil", "Teacher"));
+        familyTree.add(new Cousin("Vasyli", "Cousin"));
+
+        // Add to Collection Generic which is based on Class Inheritance
+        ArrayList<FamilyPerson<Cousin>> cousins = new ArrayList<>();
     }
 }
