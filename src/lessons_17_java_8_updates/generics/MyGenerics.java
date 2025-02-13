@@ -2,13 +2,20 @@ package lessons_17_java_8_updates.generics;
 
 import lessons_17_java_8_updates.generics.person.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MyGenerics {
     public static void main(String[] args) {
         // Generics
-        putCollectionsToGeneric();
+        genericsPassList();
+    }
+
+    public static void genericsPassList(){
+        GenericsSuper<Double> genericDouble = new GenericsSuper<>(178.1);
+        genericDouble.setNewValue(new ArrayList<>());
+        genericDouble.setNewValue(new LinkedList<>());
     }
 
     public static void storePersons(){
