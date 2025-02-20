@@ -1,0 +1,9 @@
+1. Создать класс любой, на его основе 10 экземпляров, а подсчитать количество созданных не через статику, а отдельный
+класс, который будет заниматься только этим;
+2. LOMBOK НЕИЗБЕЖНОСТЬ!
+3. Jigsaw
+4. Reactive Programming (special, protocol) + Spring
+5. HTTP - Sockets
+6. Java Garbage Collectors: https://www.baeldung.com/jvm-garbage-collectors
+7. class -> record only keeps class with data, is used for keeping data
+8. class sealed -> нужен для блокировки наследования, и не дозволения некоторым классам наследоваться.
