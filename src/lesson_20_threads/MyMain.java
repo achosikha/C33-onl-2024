@@ -12,7 +12,105 @@ public class MyMain {
 
         // Anonymous
         // Simply, inside the class announce Thread and Runnable
-        getLambdaThread();
+        workWithThreads();
+    }
+
+    public static void workWithThreads(){
+        // Earlier, stop, pause
+        // But these methods are not used anymore
+        // Thread.currentThread().stop();
+        // To wait until a THREAD dies - join()
+        Thread t1 = new Thread(() -> {
+            Thread.currentThread().setName("Thread 1");
+
+           for (int num = 1; num <= 6; num++){
+               System.out.println(Thread.currentThread().getName());
+               System.out.println("Value: " + num);
+               try {
+                   Thread.sleep(1500);
+               } catch (InterruptedException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+        });
+        Thread t2 = new Thread(() -> {
+            Thread.currentThread().setName("Thread 2");
+
+            for (int num = -6; num <= 0; num++){
+                System.out.println(Thread.currentThread().getName());
+                System.out.println("Value: " + num);
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        Thread t3 = new Thread(() -> {
+            Thread.currentThread().setName("Thread 3");
+
+            for (int num = 10; num >= 5; num--){
+                System.out.println(Thread.currentThread().getName());
+                System.out.println("Value: " + num);
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        // Запустить поток, и гарантировать, что до его окончания другие потоки не двинутся с места
+        try {
+            t1.start();
+            System.out.println(t1.getName() + ": " + t1.isAlive());
+            t1.join();
+            System.out.println(t1.getName() + ": " + t1.isAlive());
+            t2.start();
+            t2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        t3.start();
+    }
+
+    public static void getNonAnonymousLocalThread(){
+        System.out.println("Let's count to 1'000'000'000 and check the time: ");
+
+        long before = System.currentTimeMillis();
+        System.out.println("Milliseconds before: " + before);
+
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (long num = 1; num <=5_000_000_000L; num++){
+                    // JUST EMPTY BODY
+                }
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            for (long num = 1; num <=5_000_000_000L; num++){
+                // JUST EMPTY BODY
+            }
+        });
+
+        t1.start();
+        t2.start();
+    }
+
+    // How many seconds we need to serious calculations
+    public static void countTimeToCalculateInThread(){
+        System.out.println("Let's count to 1'000'000'000 and check the time: ");
+        Thread.currentThread().setName("MAIN");
+        System.out.println(Thread.currentThread());
+
+        long before = System.currentTimeMillis();
+        System.out.println("Milliseconds before: " + before);
+
+        for (long num = 1; num <=10_000_000_000L; num++){
+            // JUST EMPTY BODY
+        }
+        System.out.println("Milliseconds after: " + ((System.currentTimeMillis() - before)/1000));
     }
 
     public static void getLambdaThread(){
